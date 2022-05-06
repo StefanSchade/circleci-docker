@@ -2,7 +2,7 @@ version: '3'
 services:
   frontend-server:
     build:
-      context: module01
+      context: frontend
       dockerfile: Dockerfile.dev
     ports:
       - "3000:3000"
