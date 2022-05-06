@@ -42,6 +42,8 @@ jobs:
       - run:
           name: Run tests
           command: |
+            pwd
+            cd frontend
             docker-compose -f ./docker-compose.test.yml up
       - deploy:
           name: Push application Docker image
