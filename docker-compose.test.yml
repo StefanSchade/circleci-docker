@@ -3,7 +3,7 @@ services:
   frontend-server:
     build:
       context: frontend
-      dockerfile: Dockerfile.dev
+      dockerfile: frontend/Dockerfile.dev
     ports:
       - "3000:3000"
     volumes:
@@ -11,8 +11,8 @@ services:
       - .:/app
   tests:
     build:
-      context: .
-      dockerfile: Dockerfile.dev
+      context: frontend
+      dockerfile: frontend/Dockerfile.dev
     volumes:
       - /app/node_modules
       - .:/app
