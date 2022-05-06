@@ -2,7 +2,7 @@
 
 version: 2
 jobs:
-  build:
+  frontend-build:
     working_directory: /app
     docker:
       - image: docker:17.05.0-ce-git
@@ -41,7 +41,15 @@ jobs:
           key: v1-{{ .Branch }}-{{ epoch }}
           paths:
             - /caches/app.tar
-      - run:
+
+    frontend-test:
+      working_directory: /app
+        docker:
+            - image: docker:17.05.0-ce-git
+        steps:
+          - checkout
+          - setup_remote_docker
+          - run:
           name: Run tests
           command: |
             pwd
@@ -56,3 +64,13 @@ jobs:
 #              docker push "${ECR_ENDPOINT}/app:${CIRCLE_SHA1}"
 #            fi
 
+workflows:
+  version: 2
+
+  stage-build:
+    jobs:
+      - frontend-build
+
+  stage-test:
+    jobs:
+      - frontend-test
