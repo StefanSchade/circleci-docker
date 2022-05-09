@@ -7,4 +7,4 @@ services:
     volumes:
       - /app/node_modules
       - ./frontend/:/app
-    command: ["npm","build"]
+    command: ["sudo","npm","build"]
