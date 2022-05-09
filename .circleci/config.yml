@@ -94,7 +94,7 @@ jobs:
             ls -al ./
             ls -al ./public
             ls -al ./src
-            docker build .
+#            docker build .
 
 workflows:
   myworkflow:
