@@ -89,10 +89,6 @@ jobs:
       - run:
           name: build production image
           command: |
-            whoami
-            ls -al ./
-            ls -al ./public
-            ls -al ./src
             docker-compose -f docker-compose.deploy.yml up
 
 workflows:
