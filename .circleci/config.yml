@@ -90,6 +90,10 @@ jobs:
           name: bulild production image
           command: |
             cd frontend
+            whoami
+            ls -al ./
+            ls -al ./public
+            ls -al ./src
             docker build .
 
 workflows:
