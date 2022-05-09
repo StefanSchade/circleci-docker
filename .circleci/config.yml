@@ -87,14 +87,12 @@ jobs:
             set +o pipefail
             docker load -i /caches/app.tar | true
       - run:
-          name: bulild production image
+          name: build production image
           command: |
-#            cd frontend
             whoami
             ls -al ./
             ls -al ./public
             ls -al ./src
-#            docker build .
             docker-compose -f docker-compose.deploy.yml up
 
 workflows:
