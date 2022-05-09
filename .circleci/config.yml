@@ -12,7 +12,6 @@ jobs:
       - run:
           name: Setup toolchain in container
           command: |
-            pip install --upgrade pip
             apk add --no-cache \
               py-pip=9.0.0-r1
             pip install \
@@ -53,13 +52,11 @@ jobs:
       - run:
           name: Setup toolchain in container
           command: |
-            pip install --upgrade pip
             apk add --no-cache \
               py-pip=9.0.0-r1
-              pip install \
+            pip install \
               docker-compose==1.12.0 \
-              awscli==1.11.76 \
-              sudo
+              awscli==1.11.76
       - run:
           name: Load Docker image layer cache
           command: |
@@ -82,13 +79,11 @@ jobs:
       - run:
           name:  Setup toolchain in container
           command: |
-            pip install --upgrade pip
             apk add --no-cache \
               py-pip=9.0.0-r1
-              pip install \
+            pip install \
               docker-compose==1.12.0 \
-              awscli==1.11.76 \
-              sudo
+              awscli==1.11.76
       - run:
           name: Load Docker image layer cache
           command: |
