@@ -89,7 +89,9 @@ jobs:
       - run:
           name: build production image
           command: |
-            docker-compose -f docker-compose.deploy.yml up
+            cd frontend
+            docker build . -t deployimage
+
 
 workflows:
   myworkflow:

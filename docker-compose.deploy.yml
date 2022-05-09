@@ -4,7 +4,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    image: testname
     volumes:
       - /app/node_modules
       - ./frontend/:/app
-    command: ["whoami"]
+    command: ["npm build"]
