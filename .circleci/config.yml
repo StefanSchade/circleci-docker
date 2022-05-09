@@ -58,4 +58,6 @@ workflows:
   myworkflow:
     jobs:
       - build
-      - app-test
+      - app-test:
+          requires:
+            - build
