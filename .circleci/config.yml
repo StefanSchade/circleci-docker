@@ -93,7 +93,7 @@ jobs:
           name: Run docker-compose.deloy.yuml
           command: |
             pwd
-            docker-compose -f ./docker-compose.deploy.yml up
+            sudo docker-compose -f ./docker-compose.deploy.yml up
 
 workflows:
   myworkflow:
