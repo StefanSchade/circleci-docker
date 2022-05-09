@@ -2,7 +2,7 @@
 
 version: 2
 jobs:
-  frontend-build:
+  build:
     working_directory: /app
     docker:
       - image: docker:17.05.0-ce-git
@@ -41,19 +41,11 @@ jobs:
           key: v1-{{ .Branch }}-{{ epoch }}
           paths:
             - /caches/app.tar
-
-    frontend-test:
-      working_directory: /app
-      docker:
-        - image: docker:17.05.0-ce-git
-      steps:
-        - checkout
-        - setup_remote_docker
-        - run:
-        name: Run tests
-        command: |
-          pwd
-          docker-compose -f ./docker-compose.test.yml up
+      - run:
+          name: Run tests
+          command: |
+            pwd
+            docker-compose -f ./docker-compose.test.yml up
 #      - deploy:
 #          name: Push application Docker image
 #          command: |
@@ -64,13 +56,3 @@ jobs:
 #              docker push "${ECR_ENDPOINT}/app:${CIRCLE_SHA1}"
 #            fi
 
-workflows:
-  version: 2
-
-  stage-build:
-    jobs:
-      - frontend-build
-
-  stage-test:
-    jobs:
-      - frontend-test
