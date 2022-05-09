@@ -2,7 +2,7 @@
 
 version: 2.1
 jobs:
-  app-setup:
+  frontend-setup:
     working_directory: /app
     docker:
       - image: docker:17.05.0-ce-git
@@ -43,7 +43,7 @@ jobs:
           paths:
             - /caches/app.tar
 
-  app-test:
+  frontend-test:
     working_directory: /app
     docker:
       - image: docker:17.05.0-ce-git
@@ -71,7 +71,7 @@ jobs:
             docker-compose -f ./docker-compose.test.yml up
 
 
-  app-build:
+  frontend-build:
     working_directory: /app
     docker:
       - image: docker:17.05.0-ce-git
@@ -85,15 +85,17 @@ jobs:
             docker load -i /caches/app.tar | true
       - run:
           name: bulild production image
-          command: docker build .
+          command: |
+            cd frontend
+            docker build .
 
 workflows:
   myworkflow:
     jobs:
-      - app-setup
-      - app-test:
+      - frontend-setup
+      - frontend-test:
           requires:
-            - app-setup
-      - app-build:
+            - frontend-setup
+      - frontend-build:
           requires:
-            - app-test
+            - frontend-test
