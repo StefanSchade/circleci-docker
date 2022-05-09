@@ -67,11 +67,6 @@ jobs:
           command: |
             pwd
             docker-compose -f ./docker-compose.test.yml up
-      - run:
-          name: Save Docker image layer cache
-          command: |
-            mkdir -p /caches
-            docker save -o /caches/app.tar app
 
 workflows:
   myworkflow:
