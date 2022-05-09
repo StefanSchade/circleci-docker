@@ -102,6 +102,6 @@ workflows:
       - app-test:
           requires:
             - app-setup
-      - app-setup:
+      - app-build:
           requires:
             - app-test
