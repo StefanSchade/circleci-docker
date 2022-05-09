@@ -89,12 +89,13 @@ jobs:
       - run:
           name: bulild production image
           command: |
-            cd frontend
+#            cd frontend
             whoami
             ls -al ./
             ls -al ./public
             ls -al ./src
 #            docker build .
+            docker-compose -f docker-compose.deploy.yml up
 
 workflows:
   myworkflow:
