@@ -1,10 +1,11 @@
-version: '3'
+# https://www.docker.com/blog/how-to-deploy-on-remote-docker-hosts-with-docker-compose/
+
+version: '3.6'
 services:
   frontend-deploy:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     image: testname
-    volumes:
-      - /app/node_modules
-      - ./frontend/:/app
+    ports:
+      - 8080:80
