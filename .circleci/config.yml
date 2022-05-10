@@ -1,7 +1,6 @@
 #  https://circleci.com/blog/how-to-build-a-docker-image-on-circleci-2-0/
 #  for ssh  https://circleci.com/docs/2.0/add-ssh-key/index.html?utm_source=google&utm_medium=sem&utm_campaign=sem-google-dg--emea-en-dsa-maxConv-auth-nb&utm_term=g_-_c__dsa_&utm_content=&gclid=Cj0KCQjwmuiTBhDoARIsAPiv6L_LX8LLmfSCCQw61dSLNwITxXjF60Us5UvwJdLdc1hj5N6ZEKZzXzEaAmgREALw_wcB
-#
-
+#  https://www.docker.com/blog/how-to-deploy-on-remote-docker-hosts-with-docker-compose/
 
 version: 2.1
 jobs:
@@ -71,6 +70,9 @@ jobs:
           name: Run tests
           command: |
             pwd
+            docker context create remote ‐‐docker “host=ssh://dockerplayground@stefanschade.de”
+            docker context ls
+            docker context remote ps
             docker-compose -f ./docker-compose.test.yml up
 
 
