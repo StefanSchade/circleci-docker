@@ -56,7 +56,25 @@ docker-compose -f docker-compose.dev.yml down
 
 ===== Javscript Test
 
+[source,shell script]
+--------------
+docker-compose -f docker-compose.test.yml up --remove-orphans
+docker-compose -f docker-compose.test.yml down
+--------------
+
+* not used in CI
+* used during development to activate the server with life refresh
+* can be stoppped with `Ctrl+C` but the image will not be removed
+* is better stopped gracefully using `docker-compose down`
+
+===== Javscript Test
 
 
+-------------
+docker build -f Dockerfile.dev .
+-------------
+
+
+docker build -f Dockerfile.dev .
 
 

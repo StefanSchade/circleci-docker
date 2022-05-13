@@ -1,6 +1,6 @@
 version: '3'
 services:
-  tests:
+  frontend-tests:
     build:
       context: frontend
       dockerfile: Dockerfile.dev
