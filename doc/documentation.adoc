@@ -1,0 +1,62 @@
+
+== abc
+
+=== wasp-pack
+
+[source]
+-----------
+cargo install wasm-pack
+-----------
+
+
+[source]
+-----------
+wasm-pack build --target web
+-----------
+
+creates glue cod ein js
+
+
+
+
+
+
+=== Build steps
+
+This pipeline will facilitate the integration of a Rust library into a web application via Webassembly. We therefore have the challenge of covering a range of technologies in one repository. As Rust uses its own package manager **Cargo** the multi-step workflow is facilitated by a range of tools:
+
+* The functions are implemented and tested in **Rust** using **Cargo**.
+* Functions with a special annotation are exported to **WASM** using **https://github.com/rustwasm/wasm-bindgen[wasm-bindgen]**
+* **https://github.com/rustwasm/wasm-pack[WASM-Pack:]** The Libraryand is published as a **WASM** file
+* **NPM:** Glue
+* **NPM:** JavaScript
+
+
+
+==== Rust
+
+==== Integration
+
+
+
+==== JavaScript
+
+===== Javscript Development Server
+
+[source,shell script]
+--------------
+docker-compose -f docker-compose.dev.yml up --remove-orphans
+docker-compose -f docker-compose.dev.yml down
+--------------
+
+* not used in CI
+* used during development to activate the server with life refresh
+* can be stoppped with `Ctrl+C` but the image will not be removed
+* is better stopped gracefully using `docker-compose down`
+
+===== Javscript Test
+
+
+
+
+
