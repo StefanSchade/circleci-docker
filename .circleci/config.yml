@@ -70,9 +70,6 @@ jobs:
           name: Run tests
           command: |
             pwd
-            docker context create remote ‐‐docker “host=ssh://dockerplayground@stefanschade.de”
-            docker context ls
-            docker context remote ps
             docker-compose -f ./docker-compose.test.yml up
 
 
