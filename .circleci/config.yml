@@ -34,7 +34,7 @@ jobs:
           name: Build application Docker image
           command: |
             cd frontend
-            docker build -f Dockerfile.dev --cache-from=app -t app .
+            docker build -f dev.Dockerfile --cache-from=app -t app .
       - run:
           name: Save Docker image layer cache
           command: |
