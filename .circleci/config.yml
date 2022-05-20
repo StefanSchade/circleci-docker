@@ -88,7 +88,6 @@ jobs:
           command: |
             apk add --no-cache .gyp python3 make g++
             apk add --no-cache --virtual \
-              .gyp
               python3 \
               sudo
             pip install \
