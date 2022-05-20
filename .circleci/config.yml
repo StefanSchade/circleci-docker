@@ -86,8 +86,10 @@ jobs:
       - run:
           name: Setup dev container
           command: |
-            apk add --no-cache \
-              py-pip=9.0.0-r1 \
+            apk add --no-cache .gyp python3 make g++
+            apk add --no-cache --virtual \
+              .gyp
+              python3 \
               sudo
             pip install \
               docker-compose==1.12.0 \
