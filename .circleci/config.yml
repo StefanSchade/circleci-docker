@@ -101,7 +101,7 @@ jobs:
       - run:
           name: build production image
           command: |
-            DOCKER_HOST=“ssh://dockerplayground@stefanschade.de”
+            DOCKER_HOST=ssh://dockerplayground@stefanschade.de
             docker-compose -f docker-compose.deploy.yml up -d
 
   deploy-github:
@@ -115,12 +115,11 @@ jobs:
       - run:
           name: "Build HTML"
           command: |
-            pwd
-            ls -a
-            docker run --rm -v /home/circleci/project/:/documents/ asciidoctor/docker-asciidoctor asciidoctor /documents/warum-nein-zur-impfung.adoc
-            ls -a
-            abc.html index.html
-            ls -a
+            cd frontend
+            npm run build
+            cd build
+
+
             git config user.email "CircleCI BOT"
             git config user.name "CircleCI BOT"
             git add --all
