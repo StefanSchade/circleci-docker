@@ -9,4 +9,3 @@ services:
     image: testname
     ports:
       - 8080:80
-    command: ["npm","run", "build"]

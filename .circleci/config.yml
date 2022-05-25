@@ -102,6 +102,7 @@ jobs:
           name: build production image
           command: |
             DOCKER_HOST=ssh://dockerplayground@stefanschade.de
+            docker ps
             docker-compose -f docker-compose.deploy.yml up -d
 
   deploy-github:
@@ -118,8 +119,6 @@ jobs:
             cd frontend
             npm run build
             cd build
-
-
             git config user.email "CircleCI BOT"
             git config user.name "CircleCI BOT"
             git add --all
