@@ -86,7 +86,6 @@ jobs:
       - run:
           name: Setup dev container
           command: |
-            apk add --no-cache .gyp python3 make g++
             apk add --no-cache --virtual \
               python3 \
               sudo
@@ -103,11 +102,9 @@ jobs:
           command: |
             docker-compose -f docker-compose.deploy.yml up -d
 
-
   deploy-github:
     machine:
       image: "ubuntu-1604:202004-01"
-
     steps:
       - add_ssh_keys:
           fingerprints:
@@ -120,10 +117,10 @@ jobs:
             ls -a
             docker run --rm -v /home/circleci/project/:/documents/ asciidoctor/docker-asciidoctor asciidoctor /documents/warum-nein-zur-impfung.adoc
             ls -a
-            mv warum-nein-zur-impfung.html index.html
+            abc.html index.html
             ls -a
-            git config user.email "quo_vadis_germany@gmx.de"
-            git config user.name "CircleCI bot"
+            git config user.email "CircleCI BOT"
+            git config user.name "CircleCI BOT"
             git add --all
             git commit --allow-empty -m "CircleCI - generate html [ci skip]"
             git push
