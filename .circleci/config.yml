@@ -103,6 +103,33 @@ jobs:
           command: |
             docker-compose -f docker-compose.deploy.yml up -d
 
+
+  deploy-github:
+    machine:
+      image: "ubuntu-1604:202004-01"
+
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "9d:64:7a:8c:f2:68:b6:08:0c:16:93:68:7d:25:ea:ca"
+      - checkout
+      - run:
+          name: "Build HTML"
+          command: |
+            pwd
+            ls -a
+            docker run --rm -v /home/circleci/project/:/documents/ asciidoctor/docker-asciidoctor asciidoctor /documents/warum-nein-zur-impfung.adoc
+            ls -a
+            mv warum-nein-zur-impfung.html index.html
+            ls -a
+            git config user.email "quo_vadis_germany@gmx.de"
+            git config user.name "CircleCI bot"
+            git add --all
+            git commit --allow-empty -m "CircleCI - generate html [ci skip]"
+            git push
+
+
+
 workflows:
   myworkflow:
     jobs:
