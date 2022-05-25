@@ -72,7 +72,6 @@ jobs:
             pwd
             docker-compose -f ./docker-compose.test.yml up
 
-
   frontend-build:
     working_directory: /app
     docker:
@@ -125,6 +124,16 @@ jobs:
             git commit --allow-empty -m "CircleCI - generate html [ci skip]"
             git push
 
+  deploy-ssh:
+    machine:
+      enabled: true
+    steps:
+      - run:
+          name: Deploy Over SSH
+          command: |
+            ssh dockerplayground@stefanschade.de "docker run hello-world"
+
+
 
 
 workflows:
@@ -134,6 +143,6 @@ workflows:
       - frontend-test:
           requires:
             - frontend-setup
-      - frontend-build:
+      - deploy-ssh:
           requires:
             - frontend-test
