@@ -101,6 +101,7 @@ jobs:
       - run:
           name: build production image
           command: |
+            DOCKER_HOST=“ssh://dockerplayground@stefanschade.de”
             docker-compose -f docker-compose.deploy.yml up -d
 
   deploy-github:
