@@ -81,7 +81,7 @@ jobs:
       - setup_remote_docker
       - add_ssh_keys:
           fingerprints:
-            - "8f:79:34:08:4c:0c:51:10:d4:4e:23:79:2a:e1:74:bb"
+            - "34:1a:9a:b0:9f:0e:90:f7:73:ac:58:ff:06:5c:6f:52"
       - run:
           name: Setup dev container
           command: |
@@ -101,9 +101,8 @@ jobs:
           name: build production image
           command: |
             DOCKER_HOST=ssh://dockerplayground@stefanschade.de
-            docker ps -a
-#            docker-compose -f docker-compose.deploy.yml up -d
-#            docker run -it $(docker build -q .)
+            docker ps
+            docker-compose -f docker-compose.deploy.yml up -d
 
   deploy-github:
     machine:
@@ -125,7 +124,7 @@ jobs:
             git commit --allow-empty -m "CircleCI - generate html [ci skip]"
             git push
 
-  deploy-docker-via-ssh:
+  deploy-ssh:
     machine:
       enabled: true
     steps:
@@ -138,6 +137,8 @@ jobs:
             ssh dockerplayground@stefanschade.de "docker run hello-world"
 
 
+
+
 workflows:
   myworkflow:
     jobs:
@@ -145,6 +146,6 @@ workflows:
       - frontend-test:
           requires:
             - frontend-setup
-      - frontend-build:
+      - deploy-ssh:
           requires:
             - frontend-test
