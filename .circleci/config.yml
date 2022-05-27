@@ -100,10 +100,10 @@ jobs:
       - run:
           name: build production image
           command: |
-            cd frontend
             DOCKER_HOST=ssh://dockerplayground@stefanschade.de
             docker ps -a
-#            docker run -p 8080:80 -it $(docker build -q .)
+#            docker-compose -f docker-compose.deploy.yml up -d
+#            docker run -it $(docker build -q .)
 
   deploy-github:
     machine:
@@ -130,20 +130,8 @@ jobs:
       enabled: true
     steps:
       - add_ssh_keys:
-          fingerprints:
-            - "8f:79:34:08:4c:0c:51:10:d4:4e:23:79:2a:e1:74:bb"
-      - run:
-          name: Deploy Over SSH
-          command: |
-            ssh dockerplayground@stefanschade.de "docker run hello-world"
-
-  deploy-docker-via-ssh2:
-    machine:
-      enabled: true
-    steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "8f:79:34:08:4c:0c:51:10:d4:4e:23:79:2a:e1:74:bb"
+            fingerprints:
+              - "8f:79:34:08:4c:0c:51:10:d4:4e:23:79:2a:e1:74:bb"
       - run:
           name: Deploy Over SSH
           command: |
